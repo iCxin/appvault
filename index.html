@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AppVault 应用仓 · 常用软件官方下载索引</title>
+  <meta name="description" content="AppVault 应用仓收录常用软件的官方下载入口，覆盖 Windows、macOS、Linux、Android 与 iOS。只收录官方链接，不托管安装包，开源共建。">
+  <meta name="keywords" content="软件下载,官方下载,Windows,macOS,Linux,Android,iOS,开源,应用仓库">
+  <meta property="og:title" content="AppVault 应用仓 · 常用软件官方下载索引">
+  <meta property="og:description" content="软件，从官网开始。收录常用软件的官方下载入口，覆盖全平台，开源共建。">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F7F6F2" id="themeMeta">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('appvault-theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <script src="assets/js/config.js" defer></script>
+  <script src="data/apps.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#apps">跳到软件列表</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="AppVault 应用仓首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v11"></path>
+            <path d="m7.5 10 4.5 4.5 4.5-4.5"></path>
+            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">AppVault<span class="brand-dot">.</span></span>
+          <span class="brand-sub">应用仓</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-link" href="#apps">软件库</a>
+        <a class="nav-link" href="#principles">原则</a>
+        <a class="nav-link" href="#about">关于</a>
+        <a class="icon-btn js-repo-link" href="#" target="_blank" rel="noopener" data-repo-path="" aria-label="在 GitHub 上查看源码" title="GitHub 源码">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+          </svg>
+        </a>
+        <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 9.79 9.79Z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow">
+          <span class="live-dot"></span>
+          OPEN SOURCE · OFFICIAL DOWNLOAD INDEX
+        </div>
+        <h1 id="heroTitle">软件，<br>从<span class="hl">官网</span>开始。</h1>
+        <p class="hero-sub">一个由社区维护的官方下载索引。收录常用软件，覆盖 Windows、macOS、Linux、Android 与 iOS——不捆绑、不投毒、不赚差价。</p>
+
+        <form class="search" id="searchForm" role="search" autocomplete="off">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <label class="sr-only" for="searchInput">搜索软件</label>
+          <input id="searchInput" type="search" placeholder="搜索软件、开发商或用途…" autocomplete="off" spellcheck="false" aria-describedby="searchHint">
+          <span class="search-kbd" aria-hidden="true"><kbd>/</kbd></span>
+          <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18"></path>
+            </svg>
+          </button>
+        </form>
+        <div class="search-hint" id="searchHint">
+          <span>热门：</span>
+          <button type="button" data-query="VS Code">VS Code</button>
+          <button type="button" data-query="微信">微信</button>
+          <button type="button" data-query="Chrome">Chrome</button>
+          <button type="button" data-query="7-Zip">7-Zip</button>
+          <button type="button" data-query="Bitwarden">Bitwarden</button>
+        </div>
+
+        <div class="hero-stats" aria-label="收录统计">
+          <div class="stat">
+            <strong id="statApps">—</strong>
+            <span>款收录应用</span>
+          </div>
+          <div class="stat">
+            <strong id="statLinks">—</strong>
+            <span>个官方下载入口</span>
+          </div>
+          <div class="stat">
+            <strong id="statPlatforms">5</strong>
+            <span>大设备平台</span>
+          </div>
+          <div class="stat">
+            <strong id="statCategories">12</strong>
+            <span>个软件分类</span>
+          </div>
+        </div>
+
+        <aside class="hero-aside" aria-hidden="true">
+          <div class="aside-head">
+            <span>OFFICIAL INDEX</span>
+            <span>NO. 001</span>
+          </div>
+          <p class="aside-title">平台收录</p>
+          <div class="aside-platforms" id="platformStats"></div>
+          <div class="aside-foot">
+            <span class="live-dot"></span>
+            <span>仅官方来源 · 不托管安装包</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="catalog" id="apps" aria-labelledby="catalogTitle">
+      <div class="container">
+        <div class="catalog-head">
+          <div>
+            <h2 id="catalogTitle">软件目录</h2>
+            <p>点击任意软件，查看各平台官方下载入口。</p>
+          </div>
+          <div class="catalog-tools">
+            <p class="result-count" id="resultCount" role="status" aria-live="polite"></p>
+            <div class="filter-right">
+              <div class="select-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                  <path d="M8 20h8"></path>
+                </svg>
+                <select id="platformSelect" aria-label="按平台筛选">
+                  <option value="all">全部平台</option>
+                  <option value="windows">Windows</option>
+                  <option value="macos">macOS</option>
+                  <option value="linux">Linux</option>
+                  <option value="android">Android</option>
+                  <option value="ios">iOS</option>
+                </select>
+              </div>
+              <div class="select-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 7h16M7 12h10M10 17h4"></path>
+                </svg>
+                <select id="sortSelect" aria-label="排序方式">
+                  <option value="recommended">推荐排序</option>
+                  <option value="name">名称 A–Z</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filters" aria-label="按分类筛选">
+          <div class="chips" id="categoryChips" role="group" aria-label="按分类筛选"></div>
+        </div>
+
+        <div class="grid" id="appGrid"></div>
+
+        <div class="empty" id="emptyState" hidden>
+          <div class="empty-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.5-3.5"></path>
+            </svg>
+          </div>
+          <h3>没有找到匹配的软件</h3>
+          <p>试试更短的关键词，或清除筛选条件后再搜索。</p>
+          <button class="btn btn-outline" id="resetFilters" type="button">清除全部筛选</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles" id="principles" aria-labelledby="principlesTitle">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">WHY APPVAULT</span>
+          <h2 id="principlesTitle">只做官方链接的搬运工</h2>
+        </div>
+        <div class="principles-grid">
+          <article class="principle">
+            <span class="principle-index">01</span>
+            <h3>官方来源</h3>
+            <p>每条下载链接都指向软件官网或官方发布渠道。不收录第三方下载站、破解版与捆绑安装包，从源头降低投毒风险。</p>
+          </article>
+          <article class="principle">
+            <span class="principle-index">02</span>
+            <h3>多端覆盖</h3>
+            <p>Windows、macOS、Linux、Android、iOS 分平台标注。无论桌面还是移动设备，都能直达对应的官方版本。</p>
+          </article>
+          <article class="principle">
+            <span class="principle-index">03</span>
+            <h3>开源共建</h3>
+            <p>数据以简单的 JavaScript 对象维护，欢迎提交 PR 补充软件、修正失效链接。索引属于每一个使用者。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="aboutTitle">
+      <div class="container about-inner">
+        <div class="about-copy">
+          <span class="eyebrow">ABOUT</span>
+          <h2 id="aboutTitle">为什么值得信任</h2>
+          <p>盗版软件与“高速下载器”是恶意程序最常见的传播渠道之一。AppVault 不做安装包托管、不做下载加速、不插入推广，只把一个干净的索引摆在需要它的人面前。</p>
+          <p>项目以 MIT 协议开源。你可以自行部署、审计每一条数据，也可以把它作为团队内部的软件白名单入口。</p>
+          <div class="about-actions">
+            <a class="btn btn-primary" href="#apps">
+              浏览软件目录
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+            </a>
+            <a class="btn btn-outline js-repo-link" href="#" target="_blank" rel="noopener" data-repo-path="">在 GitHub 上查看</a>
+            <a class="btn btn-ghost" href="#principles">收录原则</a>
+          </div>
+        </div>
+        <div class="about-panel">
+          <div class="about-row"><span>收录方式</span><strong>人工筛选官网入口</strong></div>
+          <div class="about-row"><span>安装包托管</span><strong>无，全部回归官方</strong></div>
+          <div class="about-row"><span>站点架构</span><strong>纯静态 · 零依赖</strong></div>
+          <div class="about-row"><span>开源协议</span><strong>MIT License</strong></div>
+          <div class="about-note">
+            <span class="live-dot"></span>
+            链接由社区持续校验
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="siteFooter">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v11"></path>
+              <path d="m7.5 10 4.5 4.5 4.5-4.5"></path>
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">AppVault<span class="brand-dot">.</span></span>
+            <span class="brand-sub">应用仓</span>
+          </span>
+        </a>
+        <p>为每一款软件，找到回官网的路。</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>目录</h4>
+          <a href="#apps">全部软件</a>
+          <a href="#principles">收录原则</a>
+          <a href="#about">关于项目</a>
+        </div>
+        <div class="footer-col" data-repo-column>
+          <h4>资源</h4>
+          <a class="js-repo-link" href="#" target="_blank" rel="noopener" data-repo-path="">GitHub 仓库</a>
+          <a class="js-repo-link" href="#" target="_blank" rel="noopener" data-repo-path="/blob/main/CONTRIBUTING.md">贡献指南</a>
+          <a class="js-repo-link" href="#" target="_blank" rel="noopener" data-repo-path="/issues">报告失效链接</a>
+        </div>
+        <div class="footer-col footer-note">
+          <h4>说明</h4>
+          <p>本站仅收录官方下载入口，不托管、不分发任何安装包。</p>
+          <p>软件名称与图标归各自权利人所有。</p>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> AppVault Contributors · MIT License</span>
+      <span>Made for the open web.</span>
+    </div>
+  </footer>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="appDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+    <div class="drawer-inner">
+      <div class="drawer-top">
+        <span class="drawer-kicker">APPLICATION</span>
+        <button class="drawer-close" id="drawerClose" type="button" aria-label="关闭详情">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-body" id="drawerBody"></div>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
