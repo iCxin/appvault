@@ -10,6 +10,12 @@
 - 改进搜索、无障碍、响应式或性能。
 - 修正文案与错别字。
 
+## 精选与扩展库
+
+- **精选数据**：[data/apps.js](../data/apps.js)，人工维护，欢迎直接提交 PR。
+- **扩展目录**：[data/extended.js](../data/extended.js)，由 [tools/build-extended.mjs](../tools/build-extended.mjs) 从 Homebrew 公开 API 自动生成，请勿手工编辑。
+- 发现扩展目录条目有问题时，请提交 Issue；如果需要长期维护某款软件，建议按精选格式把它加入 `data/apps.js`。
+
 ## 收录标准
 
 1. **只收录官方渠道**：软件官网、官方发布页、官方 GitHub Releases、官方应用商店。

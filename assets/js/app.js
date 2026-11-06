@@ -7,11 +7,21 @@
 
   const DATA = window.APP_DATA || { categories: [], apps: [] };
   const CONFIG = window.SITE_CONFIG || {};
-  const APPS = DATA.apps.slice();
+  const EXTENDED_APPS = Array.isArray(window.EXTENDED_APPS) ? window.EXTENDED_APPS : [];
+  const APPS = DATA.apps.concat(EXTENDED_APPS);
   const CATEGORIES = DATA.categories.slice();
+
+  if (EXTENDED_APPS.length && !CATEGORIES.some(function (category) {
+    return category.id === 'extended';
+  })) {
+    CATEGORIES.push({ id: 'extended', name: '扩展库' });
+  }
+
   const CATEGORY_MAP = new Map(CATEGORIES.map(function (category) {
     return [category.id, category];
   }));
+
+  const PAGE_SIZE = APPS.length > 1000 ? 36 : APPS.length;
 
   const OS_ORDER = ['windows', 'macos', 'linux', 'android', 'ios'];
   const OS_META = {
@@ -26,7 +36,8 @@
     query: '',
     category: 'all',
     platform: 'all',
-    sort: 'recommended'
+    sort: 'recommended',
+    limit: PAGE_SIZE
   };
 
   const el = {
@@ -41,6 +52,8 @@
     resultCount: document.getElementById('resultCount'),
     emptyState: document.getElementById('emptyState'),
     resetFilters: document.getElementById('resetFilters'),
+    loadMoreWrap: document.getElementById('loadMoreWrap'),
+    loadMore: document.getElementById('loadMore'),
     drawer: document.getElementById('appDrawer'),
     drawerBody: document.getElementById('drawerBody'),
     drawerBackdrop: document.getElementById('drawerBackdrop'),
@@ -97,7 +110,8 @@
 
   function monogram(app) {
     const source = String(app.nameZh || app.name || '?').trim();
-    return source.charAt(0).toUpperCase();
+    const match = source.match(/[A-Za-z0-9\u4e00-\u9fff]/);
+    return (match ? match[0] : '?').toUpperCase();
   }
 
   function uniquePlatforms(app) {
@@ -120,6 +134,10 @@
     } catch (error) {
       return url;
     }
+  }
+
+  function formatNumber(value) {
+    return Number(value || 0).toLocaleString('zh-CN');
   }
 
   function tileMarkup(app, sizeClass) {
@@ -219,17 +237,23 @@
     const platforms = uniquePlatforms(app).map(function (os) {
       return '<span class="os-pill">' + escapeHtml(OS_META[os].short) + '</span>';
     }).join('');
+    const subtitle = app.category === 'extended'
+      ? (app.source ? app.source + ' · 扩展库' : '扩展库')
+      : app.nameZh;
+    const subtitleHtml = subtitle && subtitle !== app.name
+      ? '<span class="card-zh">' + escapeHtml(subtitle) + '</span>'
+      : '';
 
     return '<a class="card" href="#/app/' + escapeHtml(app.id) + '" data-id="' + escapeHtml(app.id) + '"' +
       ' style="--i:' + Math.min(index, 16) +
       ';--tile:' + escapeHtml(app.color) +
       ';--tile-ink:' + inkFor(app.color) + '"' +
-      ' aria-label="' + escapeHtml(app.name + ' ' + app.nameZh) + ' 官方下载详情">' +
+      ' aria-label="' + escapeHtml(app.name) + ' 官方下载详情">' +
       '<span class="card-top">' +
         tileMarkup(app) +
         '<span class="card-heading">' +
           '<span class="card-name">' + escapeHtml(app.name) + '</span>' +
-          '<span class="card-zh">' + escapeHtml(app.nameZh) + '</span>' +
+          subtitleHtml +
         '</span>' +
         '<span class="card-index">' + String(index + 1).padStart(2, '0') + '</span>' +
       '</span>' +
@@ -241,21 +265,34 @@
     '</a>';
   }
 
+  function updateLoadMore(total) {
+    if (!el.loadMoreWrap || !el.loadMore) return;
+    const remaining = total - state.limit;
+    el.loadMoreWrap.hidden = remaining <= 0;
+    if (remaining > 0) {
+      el.loadMore.textContent = '加载更多（剩余 ' + formatNumber(remaining) + ' 款）';
+    }
+  }
+
   function render() {
-    const list = visibleApps();
+    const all = visibleApps();
+    const list = all.slice(0, state.limit);
     const hasFilters = state.query !== '' || state.category !== 'all' || state.platform !== 'all';
 
     el.grid.innerHTML = list.map(cardHtml).join('');
-    el.grid.hidden = list.length === 0;
-    el.emptyState.hidden = list.length !== 0;
+    el.grid.hidden = all.length === 0;
+    el.emptyState.hidden = all.length !== 0;
 
     if (hasFilters) {
       el.resultCount.textContent = state.query
-        ? '找到 ' + list.length + ' 款与“' + state.query + '”相关的软件'
-        : '当前筛选下共 ' + list.length + ' 款软件';
+        ? '找到 ' + formatNumber(all.length) + ' 款与“' + state.query + '”相关的软件'
+        : '当前筛选下共 ' + formatNumber(all.length) + ' 款软件';
     } else {
-      el.resultCount.textContent = '共 ' + APPS.length + ' 款软件 · ' + totalLinks() + ' 个官方入口';
+      el.resultCount.textContent = '共 ' + formatNumber(APPS.length) + ' 款软件 · ' +
+        formatNumber(totalLinks()) + ' 个官方入口';
     }
+
+    updateLoadMore(all.length);
 
     el.categoryChips.querySelectorAll('.chip').forEach(function (chip) {
       chip.classList.toggle('is-active', chip.dataset.category === state.category);
@@ -289,27 +326,37 @@
   function drawerHtml(app) {
     const category = CATEGORY_MAP.get(app.category);
     const categoryName = category ? category.name : '软件';
+    const isExtended = app.category === 'extended';
+    const subtitle = isExtended
+      ? (app.source ? app.source + ' · 扩展库' : '扩展库')
+      : app.nameZh;
+    const subtitleHtml = subtitle && subtitle !== app.name
+      ? '<p class="drawer-zh">' + escapeHtml(subtitle) + '</p>'
+      : '';
     const downloads = app.downloads.slice().sort(function (a, b) {
       return OS_ORDER.indexOf(a.os) - OS_ORDER.indexOf(b.os);
     });
     const platforms = uniquePlatforms(app).map(function (os) {
       return OS_META[os].label;
     }).join(' / ');
+    const note = isExtended
+      ? '该条目来自 Homebrew 公开目录，链接未逐条人工复核；如发现失效，欢迎反馈。'
+      : '下载链接全部指向软件官方渠道，本站不托管任何安装包。';
 
     return '<div class="drawer-hero">' +
         tileMarkup(app) +
         '<div class="drawer-title-wrap">' +
           '<h2 class="drawer-title" id="drawerTitle">' + escapeHtml(app.name) + '</h2>' +
-          '<p class="drawer-zh">' + escapeHtml(app.nameZh) + '</p>' +
+          subtitleHtml +
           '<div class="drawer-tags">' +
             '<span class="tag">' + escapeHtml(categoryName) + '</span>' +
-            '<span class="tag tag-accent">官方渠道</span>' +
+            '<span class="tag tag-accent">' + (isExtended ? '公开目录' : '官方渠道') + '</span>' +
             '<span class="tag">' + escapeHtml(app.license) + '</span>' +
           '</div>' +
         '</div>' +
       '</div>' +
       '<p class="drawer-desc">' + escapeHtml(app.tagline) + '</p>' +
-      '<div class="drawer-section-label"><span>官方下载 · OFFICIAL</span><span>' +
+      '<div class="drawer-section-label"><span>' + (isExtended ? '官方主页 · SOURCE' : '官方下载 · OFFICIAL') + '</span><span>' +
         downloads.length + ' 个入口</span></div>' +
       '<div class="dl-list">' + downloads.map(downloadRow).join('') + '</div>' +
       '<div class="drawer-meta">' +
@@ -318,8 +365,7 @@
         '<div><span>支持平台</span><strong>' + escapeHtml(platforms) + '</strong></div>' +
         '<div><span>官方网站</span><strong>' + escapeHtml(hostOf(app.official)) + '</strong></div>' +
       '</div>' +
-      '<p class="drawer-note">下载链接全部指向软件官方渠道，本站不托管任何安装包。' +
-        reportMarkup(app) + '</p>' +
+      '<p class="drawer-note">' + note + reportMarkup(app) + '</p>' +
       '<div class="drawer-actions">' +
         '<a class="btn btn-primary" href="' + escapeHtml(app.official) + '" target="_blank" rel="noopener">' +
           '访问官方网站' + arrowIcon +
@@ -472,6 +518,7 @@
 
   function updateSearch(value) {
     state.query = value;
+    state.limit = PAGE_SIZE;
     el.searchClear.hidden = value.length === 0;
     render();
   }
@@ -524,16 +571,19 @@
       const chip = event.target.closest('.chip');
       if (!chip) return;
       state.category = chip.dataset.category;
+      state.limit = PAGE_SIZE;
       render();
     });
 
     el.platformSelect.addEventListener('change', function (event) {
       state.platform = event.target.value;
+      state.limit = PAGE_SIZE;
       render();
     });
 
     el.sortSelect.addEventListener('change', function (event) {
       state.sort = event.target.value;
+      state.limit = PAGE_SIZE;
       render();
     });
 
@@ -542,6 +592,7 @@
       state.category = 'all';
       state.platform = 'all';
       state.sort = 'recommended';
+      state.limit = PAGE_SIZE;
       el.searchInput.value = '';
       el.searchClear.hidden = true;
       el.platformSelect.value = 'all';
@@ -549,6 +600,20 @@
       render();
       el.searchInput.focus();
     });
+
+    if (el.loadMore) {
+      el.loadMore.addEventListener('click', function () {
+        const all = visibleApps();
+        if (state.limit >= all.length) return;
+        const start = state.limit;
+        state.limit = Math.min(start + PAGE_SIZE, all.length);
+        const more = all.slice(start, state.limit);
+        el.grid.insertAdjacentHTML('beforeend', more.map(function (app, index) {
+          return cardHtml(app, start + index);
+        }).join(''));
+        updateLoadMore(all.length);
+      });
+    }
 
     el.grid.addEventListener('click', function (event) {
       const card = event.target.closest('.card');
@@ -628,16 +693,17 @@
   /* ---------- 初始化 ---------- */
 
   function initStats() {
-    if (el.statApps) el.statApps.textContent = APPS.length;
-    if (el.statLinks) el.statLinks.textContent = totalLinks();
+    if (el.statApps) el.statApps.textContent = formatNumber(APPS.length);
+    if (el.statLinks) el.statLinks.textContent = formatNumber(totalLinks());
     if (el.statPlatforms) el.statPlatforms.textContent = OS_ORDER.length;
     if (el.statCategories) el.statCategories.textContent = CATEGORIES.length;
     if (el.year) el.year.textContent = new Date().getFullYear();
 
     const platformStats = document.getElementById('platformStats');
     if (platformStats) {
+      const curatedApps = APPS.filter(function (app) { return app.category !== 'extended'; });
       const counts = OS_ORDER.map(function (os) {
-        const count = APPS.reduce(function (sum, app) {
+        const count = curatedApps.reduce(function (sum, app) {
           return sum + app.downloads.filter(function (item) { return item.os === os; }).length;
         }, 0);
         return { os: os, count: count };
@@ -648,7 +714,7 @@
         return '<div class="aside-platform">' +
           '<span class="aside-os">' + escapeHtml(OS_META[item.os].label) + '</span>' +
           '<span class="aside-track"><span style="width:' + width + '%"></span></span>' +
-          '<span class="aside-count">' + item.count + '</span>' +
+          '<span class="aside-count">' + formatNumber(item.count) + '</span>' +
         '</div>';
       }).join('');
     }

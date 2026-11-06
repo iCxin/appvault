@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AppVault 应用仓 · 常用软件官方下载索引</title>
-  <meta name="description" content="AppVault 应用仓收录常用软件的官方下载入口，覆盖 Windows、macOS、Linux、Android 与 iOS。只收录官方链接，不托管安装包，开源共建。">
+  <title>AppVault 应用仓 · 10,000 款软件官方下载索引</title>
+  <meta name="description" content="AppVault 应用仓收录 10,000 款软件的官方下载入口：96 款人工精选，外加 Homebrew 扩展目录。覆盖 Windows、macOS、Linux、Android 与 iOS。只收录官方链接，不托管安装包，开源共建。">
   <meta name="keywords" content="软件下载,官方下载,Windows,macOS,Linux,Android,iOS,开源,应用仓库">
-  <meta property="og:title" content="AppVault 应用仓 · 常用软件官方下载索引">
-  <meta property="og:description" content="软件，从官网开始。收录常用软件的官方下载入口，覆盖全平台，开源共建。">
-  <meta property="og:type" content="website">
+  <meta property="og:title" content="AppVault 应用仓 · 10,000 款软件官方下载索引">
+  <meta property="og:description" content="软件，从官网开始。10,000 款软件官方下载入口，96 款人工精选 + Homebrew 扩展目录，开源共建。">
   <meta name="theme-color" content="#F7F6F2" id="themeMeta">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -23,6 +22,7 @@
   </script>
   <script src="assets/js/config.js" defer></script>
   <script src="data/apps.js" defer></script>
+  <script src="data/extended.js" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
@@ -76,13 +76,14 @@
           OPEN SOURCE · OFFICIAL DOWNLOAD INDEX
         </div>
         <h1 id="heroTitle">软件，<br>从<span class="hl">官网</span>开始。</h1>
-        <p class="hero-sub">一个由社区维护的官方下载索引。收录常用软件，覆盖 Windows、macOS、Linux、Android 与 iOS——不捆绑、不投毒、不赚差价。</p>
+        <p class="hero-sub">10,000 款软件的官方下载索引：96 款人工精选，外加来自 Homebrew 的扩展目录。覆盖 Windows、macOS、Linux、Android 与 iOS——不捆绑、不投毒、不赚差价。</p>
 
         <aside class="hero-aside" aria-hidden="true">
           <div class="aside-head">
             <span>OFFICIAL INDEX</span>
             <span>NO. 001</span>
           </div>
+          <p class="aside-label">精选平台分布</p>
           <div class="aside-platforms" id="platformStats"></div>
           <div class="aside-total">
             <span><strong id="statApps">—</strong> 款应用</span>
@@ -161,6 +162,10 @@
 
         <div class="grid" id="appGrid"></div>
 
+        <div class="load-more" id="loadMoreWrap" hidden>
+          <button class="btn btn-outline" id="loadMore" type="button">加载更多</button>
+        </div>
+
         <div class="empty" id="emptyState" hidden>
           <div class="empty-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
@@ -195,7 +200,7 @@
           <article class="principle">
             <span class="principle-index">03</span>
             <h3>开源共建</h3>
-            <p>数据以简单的 JavaScript 对象维护，欢迎提交 PR 补充软件、修正失效链接。索引属于每一个使用者。</p>
+            <p>精选数据人工维护，扩展目录由公开数据自动生成；欢迎提交 PR 补充软件、修正失效链接。索引属于每一个使用者。</p>
           </article>
         </div>
       </div>
@@ -208,6 +213,7 @@
           <h2 id="aboutTitle">为什么值得信任</h2>
           <p>盗版软件与“高速下载器”是恶意程序最常见的传播渠道之一。AppVault 不做安装包托管、不做下载加速、不插入推广，只把一个干净的索引摆在需要它的人面前。</p>
           <p>项目以 MIT 协议开源。你可以自行部署、审计每一条数据，也可以把它作为团队内部的软件白名单入口。</p>
+          <p>其中 96 款精选由人工核验，扩展库来自 Homebrew 公开目录，并在详情中标注来源，方便追溯与修正。</p>
           <div class="about-actions">
             <a class="btn btn-primary" href="#apps">
               浏览软件目录
@@ -218,7 +224,7 @@
           </div>
         </div>
         <div class="about-panel">
-          <div class="about-row"><span>收录方式</span><strong>人工筛选官网入口</strong></div>
+          <div class="about-row"><span>收录方式</span><strong>精选人工核验 · 扩展库自动导入</strong></div>
           <div class="about-row"><span>安装包托管</span><strong>无，全部回归官方</strong></div>
           <div class="about-row"><span>站点架构</span><strong>纯静态 · 零依赖</strong></div>
           <div class="about-row"><span>开源协议</span><strong>MIT License</strong></div>
@@ -264,7 +270,7 @@
         </div>
         <div class="footer-col footer-note">
           <h4>说明</h4>
-          <p>本站仅收录官方下载入口，不托管、不分发任何安装包。</p>
+          <p>本站仅收录官方下载入口，不托管、不分发任何安装包。扩展库条目来自 Homebrew 公开目录，未逐条人工复核。</p>
           <p>软件名称与图标归各自权利人所有。</p>
         </div>
       </div>
