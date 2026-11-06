@@ -89,6 +89,7 @@
   }
 
   function iconSource(app, prefersDarkInk) {
+    if (app.iconFile) return 'assets/icons/' + app.iconFile;
     if (!app.icon) return '';
     const suffix = prefersDarkInk ? '-ink' : '';
     return 'assets/icons/' + app.icon + suffix + '.svg';
@@ -122,14 +123,16 @@
   }
 
   function tileMarkup(app, sizeClass) {
-    const ink = inkFor(app.color);
+    const isOfficial = Boolean(app.iconFile);
+    const ink = isOfficial ? '#16180F' : inkFor(app.color);
     const source = iconSource(app, ink === '#16180F');
     const image = source
       ? '<img src="' + escapeHtml(source) + '" alt="" ' +
         (sizeClass ? '' : 'loading="lazy" decoding="async" ') +
         'onerror="this.style.display=\'none\'">'
       : '';
-    return '<span class="tile ' + (sizeClass || '') + '" style="--tile:' + escapeHtml(app.color) +
+    const classes = ['tile', isOfficial ? 'is-official' : '', sizeClass || ''].filter(Boolean).join(' ');
+    return '<span class="' + classes + '" style="--tile:' + escapeHtml(app.color) +
       ';--tile-ink:' + ink + '">' + image +
       '<span class="tile-letter" aria-hidden="true">' + escapeHtml(monogram(app)) + '</span></span>';
   }

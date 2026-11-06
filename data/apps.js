@@ -189,9 +189,7 @@
       tagline: '金山办公出品的国产办公套件，兼容主流 Office 文档格式。',
       official: 'https://www.wps.cn/',
       license: '免费增值',
-      color: '#D9382B',
-      icon: 'wps',
-      downloads: [
+      color: '#D9382B',      downloads: [
         dl('windows', 'https://www.wps.cn/'),
         dl('macos', 'https://www.wps.cn/'),
         dl('linux', 'https://www.wps.cn/'),
@@ -318,6 +316,7 @@
       official: 'https://xmind.app/download/',
       license: '免费增值',
       color: '#E85A0C',
+      iconFile: 'xmind-official.png',
       icon: 'xmind',
       downloads: [
         dl('windows', 'https://xmind.app/download/'),
@@ -717,6 +716,7 @@
       official: 'https://www.cherry-ai.com/',
       license: '免费 · 开源',
       color: '#D93A5C',
+      iconFile: 'cherrystudio-official.png',
       downloads: [
         dl('windows', 'https://www.cherry-ai.com/download'),
         dl('macos', 'https://www.cherry-ai.com/download'),
@@ -733,6 +733,7 @@
       official: 'https://chatboxai.app/',
       license: '免费增值 · 开源',
       color: '#2563EB',
+      iconFile: 'chatbox-official.png',
       downloads: [
         dl('windows', 'https://chatboxai.app/'),
         dl('macos', 'https://chatboxai.app/'),
@@ -1028,6 +1029,7 @@
       official: 'https://y.qq.com/',
       license: '免费增值',
       color: '#129A5A',
+      iconFile: 'qqmusic-official.png',
       icon: 'qqmusic',
       downloads: [
         dl('windows', 'https://y.qq.com/download/index.html'),
@@ -1045,9 +1047,7 @@
       tagline: '上手轻松的桌面视频剪辑工具，内置字幕、模板与素材库。',
       official: 'https://www.capcut.cn/',
       license: '免费增值',
-      color: '#1C1C1C',
-      icon: 'capcut',
-      downloads: [
+      color: '#1C1C1C',      downloads: [
         dl('windows', 'https://www.capcut.cn/'),
         dl('macos', 'https://www.capcut.cn/')
       ]
@@ -1120,6 +1120,7 @@
       official: 'https://www.feishu.cn/',
       license: '免费增值',
       color: '#245BDB',
+      iconFile: 'feishu-official.png',
       downloads: [
         dl('windows', 'https://www.feishu.cn/download'),
         dl('macos', 'https://www.feishu.cn/download'),
@@ -1138,6 +1139,7 @@
       official: 'https://work.weixin.qq.com/',
       license: '免费',
       color: '#1377C8',
+      iconFile: 'wecom-official.png',
       icon: 'wechatwork',
       downloads: [
         dl('windows', 'https://work.weixin.qq.com/#indexDownload'),
@@ -1252,9 +1254,7 @@
       tagline: '国内主流的个人云存储与文件分享服务，支持多端同步。',
       official: 'https://pan.baidu.com/',
       license: '免费增值',
-      color: '#2C6FE0',
-      icon: 'baidunetdisk',
-      downloads: [
+      color: '#2C6FE0',      downloads: [
         dl('windows', 'https://pan.baidu.com/download'),
         dl('macos', 'https://pan.baidu.com/download'),
         dl('android', 'https://pan.baidu.com/download'),
@@ -1361,6 +1361,7 @@
       official: 'https://www.jianguoyun.com/',
       license: '免费增值',
       color: '#1590C8',
+      iconFile: 'jianguoyun-official.png',
       downloads: [
         dl('windows', 'https://www.jianguoyun.com/s/downloads'),
         dl('macos', 'https://www.jianguoyun.com/s/downloads'),
@@ -1397,6 +1398,7 @@
       official: 'https://www.win-rar.com/',
       license: '试用付费',
       color: '#9E1B1B',
+      iconFile: 'winrar-official.png',
       icon: 'winrar',
       downloads: [
         dl('windows', 'https://www.win-rar.com/download.html')
@@ -1412,6 +1414,7 @@
       official: 'https://www.bandisoft.com/bandizip/',
       license: '免费增值',
       color: '#D95C16',
+      iconFile: 'bandizip-official.png',
       downloads: [
         dl('windows', 'https://www.bandisoft.com/bandizip/'),
         dl('macos', 'https://www.bandisoft.com/bandizip/')
@@ -1427,6 +1430,7 @@
       official: 'https://www.voidtools.com/',
       license: '免费',
       color: '#1E88B8',
+      iconFile: 'everything-official.png',
       downloads: [
         dl('windows', 'https://www.voidtools.com/downloads/')
       ]
@@ -1455,6 +1459,7 @@
       official: 'https://rufus.ie/',
       license: '免费 · 开源',
       color: '#1D6FE0',
+      iconFile: 'rufus-official.png',
       downloads: [
         dl('windows', 'https://rufus.ie/')
       ]
@@ -1469,6 +1474,7 @@
       official: 'https://www.ventoy.net/',
       license: '免费 · 开源',
       color: '#2F7D32',
+      iconFile: 'ventoy-official.png',
       downloads: [
         dl('windows', 'https://www.ventoy.net/en/download.html'),
         dl('linux', 'https://www.ventoy.net/en/download.html')
@@ -1484,6 +1490,7 @@
       official: 'https://etcher.balena.io/',
       license: '免费 · 开源',
       color: '#D64B18',
+      iconFile: 'etcher-official.png',
       downloads: [
         dl('windows', 'https://etcher.balena.io/'),
         dl('macos', 'https://etcher.balena.io/'),
@@ -1500,6 +1507,7 @@
       official: 'https://crystalmark.info/en/software/crystaldiskinfo/',
       license: '免费',
       color: '#2E76B5',
+      iconFile: 'crystaldiskinfo-official.png',
       downloads: [
         dl('windows', 'https://crystalmark.info/en/software/crystaldiskinfo/')
       ]
@@ -1514,6 +1522,7 @@
       official: 'https://www.snipaste.com/',
       license: '免费增值',
       color: '#2E9E4F',
+      iconFile: 'snipaste-official.png',
       downloads: [
         dl('windows', 'https://www.snipaste.com/'),
         dl('macos', 'https://www.snipaste.com/')
@@ -1596,6 +1605,7 @@
       official: 'https://www.huorong.cn/',
       license: '免费',
       color: '#D96B0C',
+      iconFile: 'huorong-official.png',
       downloads: [
         dl('windows', 'https://www.huorong.cn/person')
       ]

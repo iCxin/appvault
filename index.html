@@ -78,55 +78,16 @@
         <h1 id="heroTitle">软件，<br>从<span class="hl">官网</span>开始。</h1>
         <p class="hero-sub">一个由社区维护的官方下载索引。收录常用软件，覆盖 Windows、macOS、Linux、Android 与 iOS——不捆绑、不投毒、不赚差价。</p>
 
-        <form class="search" id="searchForm" role="search" autocomplete="off">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="m20 20-3.5-3.5"></path>
-          </svg>
-          <label class="sr-only" for="searchInput">搜索软件</label>
-          <input id="searchInput" type="search" placeholder="搜索软件、开发商或用途…" autocomplete="off" spellcheck="false" aria-describedby="searchHint">
-          <span class="search-kbd" aria-hidden="true"><kbd>/</kbd></span>
-          <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索" hidden>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-              <path d="M6 6l12 12M18 6 6 18"></path>
-            </svg>
-          </button>
-        </form>
-        <div class="search-hint" id="searchHint">
-          <span>热门：</span>
-          <button type="button" data-query="VS Code">VS Code</button>
-          <button type="button" data-query="微信">微信</button>
-          <button type="button" data-query="Chrome">Chrome</button>
-          <button type="button" data-query="7-Zip">7-Zip</button>
-          <button type="button" data-query="Bitwarden">Bitwarden</button>
-        </div>
-
-        <div class="hero-stats" aria-label="收录统计">
-          <div class="stat">
-            <strong id="statApps">—</strong>
-            <span>款收录应用</span>
-          </div>
-          <div class="stat">
-            <strong id="statLinks">—</strong>
-            <span>个官方下载入口</span>
-          </div>
-          <div class="stat">
-            <strong id="statPlatforms">5</strong>
-            <span>大设备平台</span>
-          </div>
-          <div class="stat">
-            <strong id="statCategories">12</strong>
-            <span>个软件分类</span>
-          </div>
-        </div>
-
         <aside class="hero-aside" aria-hidden="true">
           <div class="aside-head">
             <span>OFFICIAL INDEX</span>
             <span>NO. 001</span>
           </div>
-          <p class="aside-title">平台收录</p>
           <div class="aside-platforms" id="platformStats"></div>
+          <div class="aside-total">
+            <span><strong id="statApps">—</strong> 款应用</span>
+            <span><strong id="statLinks">—</strong> 个官方入口</span>
+          </div>
           <div class="aside-foot">
             <span class="live-dot"></span>
             <span>仅官方来源 · 不托管安装包</span>
@@ -138,10 +99,7 @@
     <section class="catalog" id="apps" aria-labelledby="catalogTitle">
       <div class="container">
         <div class="catalog-head">
-          <div>
-            <h2 id="catalogTitle">软件目录</h2>
-            <p>点击任意软件，查看各平台官方下载入口。</p>
-          </div>
+          <h2 id="catalogTitle">软件目录</h2>
           <div class="catalog-tools">
             <p class="result-count" id="resultCount" role="status" aria-live="polite"></p>
             <div class="filter-right">
@@ -169,6 +127,31 @@
                 </select>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="catalog-search">
+          <form class="search" id="searchForm" role="search" autocomplete="off">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.5-3.5"></path>
+            </svg>
+            <label class="sr-only" for="searchInput">搜索软件</label>
+            <input id="searchInput" type="search" placeholder="搜索软件、开发商或用途…" autocomplete="off" spellcheck="false" aria-describedby="searchHint">
+            <span class="search-kbd" aria-hidden="true"><kbd>/</kbd></span>
+            <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18"></path>
+              </svg>
+            </button>
+          </form>
+          <div class="search-hint" id="searchHint">
+            <span>热门：</span>
+            <button type="button" data-query="VS Code">VS Code</button>
+            <button type="button" data-query="微信">微信</button>
+            <button type="button" data-query="Chrome">Chrome</button>
+            <button type="button" data-query="7-Zip">7-Zip</button>
+            <button type="button" data-query="Bitwarden">Bitwarden</button>
           </div>
         </div>
 

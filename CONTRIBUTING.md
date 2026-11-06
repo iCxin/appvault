@@ -59,6 +59,7 @@
 | `license` | 是 | 如 `免费`、`免费 · 开源`、`免费增值`、`付费订阅`、`试用付费` |
 | `color` | 是 | 图标底色，十六进制颜色；建议使用品牌主色 |
 | `icon` | 否 | [Simple Icons](https://simpleicons.org/) 的 slug；留空则显示首字母 |
+| `iconFile` | 否 | 官方图标文件名（存放在 `assets/icons/`），如 `bandizip-official.png`；设置后优先于 `icon` |
 | `featured` | 否 | 布尔值，推荐排序时优先展示 |
 | `downloads` | 是 | 下载入口数组，至少一项 |
 
@@ -77,11 +78,12 @@ dl('android', 'https://example.com/download', 'Android 版 · 某个发行版')
 
 图标文件统一保存在 `assets/icons/` 中，运行时不请求外部 CDN。
 
-- 若软件在 Simple Icons 有收录，填写对应 slug。
-- 图标颜色由站点根据 `color` 的亮度自动选择：浅色底使用 `{slug}-ink.svg`（深色图标），深色底使用 `{slug}.svg`（白色图标）。
-- 找不到合适的 slug 时，把 `icon` 留空（或删除该字段），站点会显示中文名首字母。
+- 优先使用软件官网提供的官方图标：保存为 `assets/icons/{app-id}-official.png`（或 `.svg`），并在数据中填写 `iconFile`。
+- 若没有可靠的官方图标，可使用 Simple Icons 的单色品牌标志并填写 `icon`。
+- 两者都没有时，把 `icon` 与 `iconFile` 留空（或删除字段），站点会显示中文名首字母。
+- 单色 SVG 图标颜色由站点根据 `color` 的亮度自动选择：浅色底使用 `{slug}-ink.svg`（深色图标），深色底使用 `{slug}.svg`（白色图标）。
 
-新增图标可手动准备 SVG 文件放入 `assets/icons/`：白色版本命名为 `{slug}.svg`，深色版本命名为 `{slug}-ink.svg`。图标来源建议使用 [Simple Icons](https://simpleicons.org/)（CC0）或 [Iconify](https://iconify.design/) 中的单色图标集。
+单色图标来源建议使用 [Simple Icons](https://simpleicons.org/)（CC0）或 [Iconify](https://iconify.design/) 中的单色图标集。
 
 ## 本地检查
 
